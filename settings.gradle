@@ -1,0 +1,3 @@
+include ':zplLabelPrint'
+include ':app'
+rootProject.name = "ZplLabelPrint"
