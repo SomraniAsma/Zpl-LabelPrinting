@@ -48,21 +48,28 @@ class LabelPrinting(
             if (ipAdress == null || ipAdress.equals("") || port.equals("") || port == null) {
 
                 result = "3"
+                Log.e("RESULT..", " "+result)
+
 
             } else if (networkState.contains("0")) {
                 Log.e("TEST..", "0 ")
                 result = "2"
+                Log.e("RESULT..", " "+result)
 
             } else if (vpn) {
 
                 if (networkState.contains("1")) {
                     Log.e("TEST..", "1 ")
                     result = "1"
+                    Log.e("RESULT..", " "+result)
+
                 }
 
             } else if (networkState.contains("2")) {
                 Log.e("TEST..", "2 ")
                 result = "0"
+
+                Log.e("RESULT..", " "+result)
 
                 SocketConnecting.startPrinting(
                     msg,
@@ -90,6 +97,7 @@ class LabelPrinting(
     override fun onPostExecute(result: String?) {
 
         pd?.dismiss()
+        Log.e("PRINTIN RESULT..", " "+result+" "+resultPrint)
 
         if (result != null && result.contains("2")) {
             AlertDialog.Builder(contet)
