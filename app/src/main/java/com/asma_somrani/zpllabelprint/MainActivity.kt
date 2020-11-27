@@ -15,9 +15,21 @@ class MainActivity : AppCompatActivity() {
         printbtn=findViewById(R.id.btnprint)
         printbtn.setOnClickListener {
 
-            //  val impression: LabelPrinting = LabelPrinting(this@MainActivity)
 
-            var print= LabelPrinting(this@MainActivity,false, "192.168.1.14", 9100, "printing")
+ val message = """^XA
+^JMB^FS
+^FO50,600^GB250,1,3^FS
+^FO150,635^GB600,540,3^FS
+^FWr
+^CFA,10
+^FO322,20^GB58,200,3^FS
+^FO355,30^FDHello world! ^FS      :
+^XZ"""
+
+
+
+
+            var print= LabelPrinting(this@MainActivity, false, "192.168.1.109", 9100, message)
             print.execute("") }
     }
 }

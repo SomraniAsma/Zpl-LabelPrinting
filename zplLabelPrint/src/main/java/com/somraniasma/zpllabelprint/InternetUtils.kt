@@ -39,13 +39,22 @@ class InternetUtils {
             return internet
         }
 
-        fun networkCheck(context: Context): String {
-            result = if (!isNetworkAvailable(context)) {
-                "0"
-            } else if (!vpn(context)) {
-                "1"
-            } else {
-                "2"
+        fun networkCheck(context: Context, vpncheck:Boolean): String {
+            if (vpncheck==true) {
+                result = if (!isNetworkAvailable(context)) {
+                    "0"
+                } else if (!vpn(context)) {
+                    "1"
+                } else {
+                    "2"
+                }
+            }
+            else {
+                result = if (!isNetworkAvailable(context)) {
+                    "0"
+                }  else {
+                    "2"
+                }
             }
             return result
         }
