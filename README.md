@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/SomraniAsma/Zpl-LabelPrinting.svg)](https://jitpack.io/#SomraniAsma/Zpl-LabelPrinting)
+
 # Zpl-LabelPrinting
 
 
@@ -29,7 +31,7 @@ allprojects {
 
 ```
 dependencies {
-	        implementation 'com.github.SomraniAsma:Zpl-LabelPrinting:1.0.0'
+	        implementation 'com.github.SomraniAsma:Zpl-LabelPrinting:1.0.2'
 	}
 ```
 
