@@ -8,7 +8,7 @@
 #### A very useful and painless library for your ZPL label Printing!!
 #### Written in kotlin.
 #### Include Internet & VPN check.
-#### Automatically connect to any laser printer (supporting ZPL language).
+#### Automatically connect to any Industrial Thermal printer (supporting ZPL language).
 .
 .
 .
