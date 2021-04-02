@@ -62,7 +62,7 @@ class LabelPrinting(
             } else if (networkState.contains("2")) {
                 Log.e("TEST..", "2 ")
                 result = "0"
-
+try{
                 SocketConnecting.startPrinting(
                     msg,
                     ipAdress,//"192.168.1.149",
@@ -73,6 +73,15 @@ class LabelPrinting(
                 Log.e("ZPL..", " $msg")
                 Log.e("IP ADRESS..", " $ipAdress")
                 Log.e("PORT..", " $port")
+            } catch (e: Exception) {
+                Log.e(
+                    "EXCEPTIONSOCKET ",
+                    "IOException $e" + " " + e.printStackTrace().toString() + " " + e.message
+                )
+                resultPrint = false
+                result = "3"
+
+            }
             }
 
         } catch (e: Exception) {
