@@ -6,8 +6,11 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.AsyncTask
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import java.lang.ref.WeakReference
+
 
 class LabelPrinting(
     private val contet: Activity,
@@ -17,6 +20,7 @@ class LabelPrinting(
 ) :
     AsyncTask<String, Void, String>() {
     var pd: ProgressDialog? = null
+    var progressBar: ProgressBar? = null
     var resultPrint = false
     var result = "0"
 
@@ -25,6 +29,7 @@ class LabelPrinting(
 
     fun LabelPrinting(context: Activity) {
         printWeakReference = WeakReference(contet)
+
     }
 
     override fun onPreExecute() {
@@ -32,7 +37,8 @@ class LabelPrinting(
         result = "0"
         pd = ProgressDialog(contet)
         pd!!.setMessage("Loading...")
-        pd!!.show()
+
+        //  pd!!.show()
     }
 
     override fun doInBackground(vararg p0: String?): String? {
@@ -62,13 +68,14 @@ class LabelPrinting(
             } else if (networkState.contains("2")) {
                 Log.e("TEST..", "2 ")
                 result = "0"
-try{
+         try{
                 SocketConnecting.startPrinting(
                     msg,
                     ipAdress,//"192.168.1.149",
                     port//9100
                 )
                 resultPrint = true
+             result="0"
 
                 Log.e("ZPL..", " $msg")
                 Log.e("IP ADRESS..", " $ipAdress")
@@ -80,6 +87,7 @@ try{
                 )
                 resultPrint = false
                 result = "3"
+             //return "0"
 
             }
             }
@@ -90,16 +98,33 @@ try{
                 "IOException $e" + " " + e.printStackTrace().toString() + " " + e.message
             )
             resultPrint = false
+           // pd?.dismiss()
+           // return "0"
 
         }
+
+
+        //TODO add onPostExecute treatment here
+
+
+
+
+
+
+
         return result
     }
 
+    override fun onProgressUpdate(vararg values: Void?) {
+        super.onProgressUpdate(*values)
+    }
+
+
     override fun onPostExecute(result: String?) {
+        progressBar?.visibility = View.GONE
+}
 
-        pd?.dismiss()
-
-        if (result != null && result.contains("2")) {
+      /*  if (result != null && result.contains("2")) {
             AlertDialog.Builder(contet)
                 .setMessage("SVP vérifiez votre connexion Internet!")
                 .setCancelable(false)
@@ -115,7 +140,7 @@ try{
                 .show()
         } else if (result != null && result.contains("3")) {
             AlertDialog.Builder(contet)
-                .setMessage("Merci de vaider la configuration imprimante au niveau de l'interface Setting")
+                .setMessage("Merci de valider la configuration imprimante au niveau de l'interface Setting")
                 .setCancelable(false)
                 .setTitle("Parametres imprimante")
                 .setNegativeButton("Ok") { dialog, id -> }
@@ -134,6 +159,6 @@ try{
                 Toast.LENGTH_SHORT
             ).show()
 
-        }
-    }
+        }*/
+
 }
